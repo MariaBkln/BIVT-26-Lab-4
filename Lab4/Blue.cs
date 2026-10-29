@@ -284,6 +284,7 @@ namespace Lab4
                     array[j + 1] = array[j];
                     j--;
                 }
+
                 array[j + 1] = key;
             }
 
@@ -293,9 +294,19 @@ namespace Lab4
             while (left <= right && index == -1)
             {
                 int middle = (left + right) / 2;
-                if (array[middle] == P) index = middle;
-                else if (array[middle] < P) left = middle + 1;
-                else right = middle - 1;
+                if (array[middle] == P)
+                {
+                    index = middle;
+                }
+                else if (array[middle] < P)
+                {
+                    left = middle + 1;
+                }
+                else
+                {
+                    right = middle - 1;
+                }
+            }
             // end
 
             return index;
