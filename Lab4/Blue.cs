@@ -275,37 +275,27 @@ namespace Lab4
             int index = 0;
 
             // code here
-            int n = array.Length;
-            bool swapped = false;
-            for (int i = 0; i < n - 1; i++)
+            for (int i = 1; i < array.Length; i++)
             {
-                for (int j = 0; j < n - i - 1; j++)
+                int key = array[i];
+                int j = i - 1;
+                while (j >= 0 && array[j] > key)
                 {
-                    if (array[j] > array[j + 1])
-                    {
-                        (array[j], array[j + 1]) = (array[j + 1], array[j]);
-                        swapped = true;
-                    }
+                    array[j + 1] = array[j];
+                    j--;
                 }
-                if (!swapped) break;
+                array[j + 1] = key;
             }
 
-            int low = 0, high = n - 1;
-            while (low <= high)
+            int left = 0;
+            int right = array.Length - 1;
+            index = -1;
+            while (left <= right && index == -1)
             {
-                int mid = low + (high - low) / 2;
-                if (array[mid] == P)
-                {
-                    index = mid;
-                    break;
-                } else if (array[mid] < P)
-                {
-                    low = mid + 1;
-                } else
-                {
-                    high = mid - 1;
-                }
-            }
+                int middle = (left + right) / 2;
+                if (array[middle] == P) index = middle;
+                else if (array[middle] < P) left = middle + 1;
+                else right = middle - 1;
             // end
 
             return index;
